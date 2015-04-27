@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 # contact: cody.rocker.83@gmail.com
+# http://imgur.com/user/repost9000
 
 """
 
@@ -14,7 +15,7 @@ reasons, then repost it through the public Imgur Python API.
 # + First
 #    Get the script running and producing reliably random output
 # + Second
-#    Automate posting through the API
+#    Automate posting through the API (or Imgur email upload? upload@imgur )
 # + Third
 #    credit original post via reverse image search under the imgur domain
 #    http://stackoverflow.com/questions/13662667/sending-get-requests-for-a-google-reverse-image-search
