@@ -1,5 +1,7 @@
 This image was selected randomly and uploaded automatically, as a test, using Imgur's PythonAPI.
 
-This bot is being developed as a learning experiment in Python programming and WebApp API implementation.
+This UserBot is being developed as a learning experiment in Python programming and WebApp API implementation.
+
+This particular post is testing my ability to insert and properly format a description from a premade template file, and document/remove posted images from the candidate directory.  So while this bot is blatantly recycling content that, for whatever reason the developer kept, it will only do so a single time.
 
 - More info can be found at: https://github.com/CodyTXR0KR/repost_9000

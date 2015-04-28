@@ -21,15 +21,12 @@ def StartClient():
 
 
 def MakePost(client, image):
+    with open('description.txt', 'r') as template:
+        post_desc = template.read()
     meta = {'album': None,
             'name': None,
-            'title': 'Look ma, no hands',
-            'description': 'This image was selected randomly and uploaded, '
-                           'automatically, as a test using Imgur PythonAPI.  '
-                           'This UserBot is being developed as a learning experiment '
-                           'in Python programming and WebApp API implementation.  '
-                           '- More info can be found in profile and at '
-                           'https://github.com/CodyTXR0KR/repost_9000'}
+            'title': 'Resistance is futile...',
+            'description': post_desc}
 
     print ("")
     print (("Attempting to upload file: " + image))
