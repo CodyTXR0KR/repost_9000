@@ -3,33 +3,8 @@
 # contact: cody.rocker.83@gmail.com
 # http://imgur.com/user/repost9000
 
-"""
-
-Meant to select a random image from a directory of images I've downloaded for various
-reasons, then repost it through the public Imgur Python API.
-
-Currently supports png, jpg and gif file types
-
-"""
-
-# IDEAS
-# ---------------
-# + First
-#    Get the script running and producing reliably random output
-#    -    finished 4/27/2015
-#
-# + Second
-#    Automate posting through the API (or Imgur email upload? upload@imgur)
-#    -    finished 4/27/2015
-#
-# + Third
-#    credit original post via reverse image search under the imgur domain
-#    http://stackoverflow.com/questions/13662667/sending-get-requests-for-a-google-reverse-image-search
-#    https://developers.google.com/api-client-library/python/apis/customsearch/v1
-
-# Written for Python 3
 import os
-import smtplib
+import smtplib  # python builtin email handler
 
 from random import randint
 
@@ -50,7 +25,7 @@ username = config.get('credentials', 'username')
 password = config.get('credentials', 'password')
 
 # Routing addresses
-fromaddr = 'cody.rocker.83@gmail.com'
+fromaddr = username
 toaddrs = 'upload@imgur.com'
 
 # Empty directory array
