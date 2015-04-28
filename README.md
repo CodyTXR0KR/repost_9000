@@ -18,22 +18,12 @@ planned features
 |
 |------------------------------------|----------|
 | return random from folder          |    Yes   |
-|
 | post image to imgur via Email      |    Yes   |
-|
 | post image to imgur via API        |    Yes   |
-|
 | modify post metadata and publish   |    Yes   |
-|
 | credit / link original source      |          |
-|
 | remove used images from directory  |          |
-|
 | community image contribution       |          |
-|
 | scheduled daily posts              |          |
-|
 | user feedback                      |          |
-|
 | fully generate post metadata       |          |
-|
