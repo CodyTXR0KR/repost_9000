@@ -1,8 +1,7 @@
 # repost_9000
-===========
 * `Imgur repost bot written in Python. Learning experiment project`
 * `focused on various webApp API's including google(gmail), and imgurpython`
-
+===========
 developer
 =========
 - Cody Rocker - contact: cody.rocker.83@gmail.com
