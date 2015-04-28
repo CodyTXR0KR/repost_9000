@@ -23,10 +23,13 @@ def StartClient():
 def MakePost(client, image):
     meta = {'album': None,
             'name': None,
-            'title': 'Hello World',
+            'title': 'Look ma, no hands',
             'description': 'This image was selected randomly and uploaded, '
                            'automatically, as a test using Imgur PythonAPI.  '
-                           'More info can be found in user profile'}
+                           'This UserBot is being developed as a learning experiment '
+                           'in Python programming and WebApp API implementation.  '
+                           '- More info can be found in profile and at '
+                           'https://github.com/CodyTXR0KR/repost_9000'}
 
     print ("")
     print (("Attempting to upload file: " + image))

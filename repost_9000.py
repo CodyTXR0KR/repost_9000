@@ -26,7 +26,7 @@ password = config.get('credentials', 'password')
 
 # Routing addresses
 fromaddr = username
-toaddrs = 'upload@imgur.com'
+toaddrs = 'codiferus17@gmail.com'
 
 # Empty directory array
 files = None
@@ -101,5 +101,26 @@ def TestAPIPost():
     MakePost(client, rand_image)
 
 
+def EmailNotify():
+    msg = MIMEMultipart()
+    msg['Subject'] = 'repost_9000 activity log'
+    msg['From'] = fromaddr
+    msg['To'] = toaddrs
+
+    text = MIMEText("repost_9000 has posted an image to Imgur")
+    msg.attach(text)
+
+    server = smtplib.SMTP('smtp.gmail.com:587')
+    server.ehlo()
+    server.starttls()
+    server.ehlo()
+    server.login(username, password)
+    print (("sending confirmation to " + toaddrs))
+    server.sendmail(fromaddr, toaddrs, msg.as_string())
+    print ("successful...")
+    server.quit()
+
+
 #TestEmailPost()
-#TestAPIPost()
+TestAPIPost()
+EmailNotify()
