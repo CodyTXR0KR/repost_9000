@@ -14,8 +14,7 @@ Requirements
 
 planned features
 ================
-| description                        | complete
-|
+| description                        | complete |
 |------------------------------------|----------|
 | return random from folder          |    Yes   |
 | post image to imgur via Email      |    Yes   |
