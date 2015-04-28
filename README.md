@@ -17,10 +17,10 @@ planned features
 ================
 | description                        | complete |
 |------------------------------------|----------|
-| return random from folder          |    Yes   |
-| post image to imgur via Email      |    Yes   |
-| post image to imgur via API        |    Yes   |
-| modify post metadata and publish   |    Yes   |
+| return random from folder          |    Yes   |  `4/27`
+| post image to imgur via Email      |    Yes   |  `4/27`
+| post image to imgur via API        |    Yes   |  `4/27`
+| modify post metadata and publish   |    Yes   |  `4/27`
 | credit / link original source      |          |
 | remove used images from directory  |          |
 | community image contribution       |          |
