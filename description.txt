@@ -1,0 +1,5 @@
+This image was selected randomly and uploaded automatically, as a test, using Imgur's PythonAPI.
+
+This bot is being developed as a learning experiment in Python programming and WebApp API implementation.
+
+- More info can be found at: https://github.com/CodyTXR0KR/repost_9000

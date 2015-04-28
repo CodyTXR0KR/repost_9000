@@ -34,8 +34,12 @@ files = None
 # Path to target source directory
 folder = '/home/cody/repost_9000/images'
 
+# Path to currently selected image
+path = None
+filename = None
 
-def SendMail(ImgFileName):
+
+def PostToMail(ImgFileName):
     img_data = open(ImgFileName, 'rb').read()
     msg = MIMEMultipart()
     msg['Subject'] = 'Test'
@@ -82,8 +86,11 @@ def GetRandom():
 
 
 def FindRandomImage():
+    global path
+    global filename
     index = GetRandom()
     print (("Selected index ", index))
+    filename = files[index]
     path = folder + "/" + files[index]  # External directory
     return path
 
@@ -91,7 +98,7 @@ def FindRandomImage():
 def TestEmailPost():
     FillArray(folder)
     rand_image = FindRandomImage()
-    SendMail(rand_image)
+    PostToMail(rand_image)
 
 
 def TestAPIPost():
@@ -99,13 +106,14 @@ def TestAPIPost():
     FillArray(folder)
     rand_image = FindRandomImage()
     MakePost(client, rand_image)
+    EmailNotify(toaddrs)
 
 
-def EmailNotify():
+def EmailNotify(UserEmail):
     msg = MIMEMultipart()
     msg['Subject'] = 'repost_9000 activity log'
     msg['From'] = fromaddr
-    msg['To'] = toaddrs
+    msg['To'] = UserEmail
 
     text = MIMEText("repost_9000 has posted an image to Imgur")
     msg.attach(text)
@@ -115,12 +123,20 @@ def EmailNotify():
     server.starttls()
     server.ehlo()
     server.login(username, password)
-    print (("sending confirmation to " + toaddrs))
-    server.sendmail(fromaddr, toaddrs, msg.as_string())
+    print (("sending confirmation to " + UserEmail))
+    server.sendmail(fromaddr, UserEmail, msg.as_string())
     print ("successful...")
     server.quit()
 
 
+def RemoveImage():
+    print("adding file to list of posted images")
+    with open('posted_files.txt', 'a') as file_log:
+        file_log.write(filename)
+    print("removing posted image from directory")
+    #os.remove(path)  # Option to delete the file from candidate directory
+
+
 #TestEmailPost()
 TestAPIPost()
-EmailNotify()
+RemoveImage()
