@@ -22,7 +22,7 @@ planned features
 | post image to imgur via API        |    Yes   |  4/27  |
 | modify post metadata and publish   |    Yes   |  4/27  |
 | credit / link original source      |          |        |
-| remove used images from directory  |          |        |
+| remove used images from directory  |    Yes   |  4/28  |
 | community image contribution       |          |        |
 | scheduled daily posts              |          |        |
 | user feedback                      |          |        |

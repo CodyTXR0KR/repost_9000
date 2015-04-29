@@ -18,18 +18,3 @@ def StartClient():
     # Start client
     client = ImgurClient(client_id, client_secret, None, refresh_token)
     return client
-
-
-def MakePost(client, image):
-    with open('description.txt', 'r') as template:
-        post_desc = template.read()
-    meta = {'album': None,
-            'name': None,
-            'title': 'Resistance is futile...',
-            'description': post_desc}
-
-    print ("")
-    print (("Attempting to upload file: " + image))
-    client.upload_from_path(image, meta, anon=False)
-    print ("")
-    print ("Success...")

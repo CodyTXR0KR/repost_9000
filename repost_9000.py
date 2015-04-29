@@ -15,7 +15,7 @@ from email.mime.multipart import MIMEMultipart
 
 # Requires Imgur's Python api to be installed. >> https://github.com/Imgur/imgurpython
 # Documentation >> https://api.imgur.com/
-from imgur_client import StartClient, MakePost
+from imgur_client import StartClient
 from helpers import get_config
 
 # Get email username and password from auth.ini
@@ -102,11 +102,10 @@ def TestEmailPost():
 
 
 def TestAPIPost():
-    client = StartClient()
     FillArray(folder)
     rand_image = FindRandomImage()
+    client = StartClient()
     MakePost(client, rand_image)
-    EmailNotify(toaddrs)
 
 
 def EmailNotify(UserEmail):
@@ -137,6 +136,34 @@ def RemoveImage():
     #os.remove(path)  # Option to delete the file from candidate directory
 
 
-#TestEmailPost()
-TestAPIPost()
-RemoveImage()
+def MakePost(client, image):  # Main post function called by API method
+    with open('description.txt', 'r') as template:
+        post_desc = template.read()
+    meta = {'album': None,
+            'name': None,
+            'title': 'How to repost: Day 2',
+            'description': post_desc}
+
+    print ("")
+    print (("Attempting to upload file: " + image))
+    client.upload_from_path(image, meta, anon=False)
+    print ("")
+    print ("Success...")
+
+
+#TestEmailPost()  # submit an image via E-mail. Works
+TestAPIPost()  # submit an image, with metadata, via API. Works
+RemoveImage()  # manage image library to prevent duplicate posts. Works
+EmailNotify(toaddrs)  # send notification to Main acct when bot submits an image. Works
+
+# Outline actions for making a general gallery submission
+# -------------------------------------------------------
+# Update image library (Remove used, duplicate, NSFW, and/or blacklisted images)
+# Add all potential paths to an array
+# Select a random index within the array
+# Run search to find original image source(if possible)(to be used in Description)
+# (optional) Find original top comment from source (to be used as new Title)
+# Initialize/authenticate Imgur client
+# Assemble image and metadata package and submit to gallery
+# Email notification action_log to developer
+# Handle management of image library
