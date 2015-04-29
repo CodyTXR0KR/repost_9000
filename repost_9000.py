@@ -131,7 +131,7 @@ def EmailNotify(UserEmail):
 def RemoveImage():
     print("adding file to list of posted images")
     with open('posted_files.txt', 'a') as file_log:
-        file_log.write(filename)
+        file_log.write(filename + '\n')
     print("removing posted image from directory")
     #os.remove(path)  # Option to delete the file from candidate directory
 

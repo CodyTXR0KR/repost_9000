@@ -1,0 +1,4 @@
+- Xahnel
+you should make a bot that works on comments. Say, one that searches for the phrase
+'there it is' or reference to Jeff Goldblum, and summons Jeff Goldblum Saying
+'WellThereItIs'

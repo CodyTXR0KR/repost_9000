@@ -1,26 +1,5 @@
 This image was selected randomly and uploaded automatically, as a test, using Imgur's PythonAPI.  repost9000 is a UserBot is being developed as a learning experiment in Python programming and WebApp API implementation.
 
-After day 2 of coding, playing with ideas and reading documentation I can make (re)posts without any user interaction.  The functions outlined below represent the simplest core functionality for getting an image to the gallery.  Currently I only have to approve the content and hit publish(easy to bypass, when ready), and that check only exists to verify the conditions i'm testing.'
 
-#TestEmailPost()  # submit an image via E-mail(upload@imgur.com). Works
-#TestAPIPost()  # submit an image, with metadata, via API. Works
-#RemoveImage()  # manage image library to prevent duplicate posts. Works
-#EmailNotify()  # send email notification to Main acct when bot submits an image. Works
-
-# Outline actions for making a general gallery submission
-# -------------------------------------------------------
-# Update image library (Remove used, duplicate*, NSFW*, and/or blacklisted* images)*
-# Add all potential paths to an array
-# Select a random index within the array
-# Run search to find original image source(if possible)(to be used in Description)*
-# (optional) Find original top comment from source (to be used as new Title :P)*
-# Initialize/authenticate Imgur client
-# Assemble image and metadata package and submit to gallery
-# Email notification action_log to developer
-# Handle management of image library
-
-* not yet implemented
-
-Once I solidify the posting process to my liking I plan on adding 'special' posts, such as webcomics on Sundays, or LNI posts etc.  I'm welcome and open to any ideas as this is a project I'm doing for fun/education.
 
 - repost9000's source code can be found at: https://github.com/CodyTXR0KR/repost_9000
