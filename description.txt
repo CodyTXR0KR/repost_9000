@@ -1,5 +1,0 @@
-This image was selected randomly and uploaded automatically, as a test, using Imgur's PythonAPI.  repost9000 is a UserBot is being developed as a learning experiment in Python programming and WebApp API implementation.
-
-
-
-- repost9000's source code can be found at: https://github.com/CodyTXR0KR/repost_9000

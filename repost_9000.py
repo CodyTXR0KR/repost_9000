@@ -17,6 +17,7 @@ from email.mime.multipart import MIMEMultipart
 # Documentation >> https://api.imgur.com/
 from imgur_client import StartClient
 from helpers import get_config
+from search_sources import ImageLookup
 
 # Get email username and password from auth.ini
 config = get_config()
@@ -75,7 +76,7 @@ def FillArray(Folder):
     if files is None:
         print ("Populating array...")
         files = os.listdir(Folder)
-        print (("Found ", len(files), " images."))
+        print (("Found " + str(len(files)) + " images."))
     else:
         return
 
@@ -89,7 +90,7 @@ def FindRandomImage():
     global path
     global filename
     index = GetRandom()
-    print (("Selected index ", index))
+    print (("Selected index " + str(index)))
     filename = files[index]
     path = folder + "/" + files[index]  # External directory
     return path
@@ -104,6 +105,7 @@ def TestEmailPost():
 def TestAPIPost():
     FillArray(folder)
     rand_image = FindRandomImage()
+    ImageLookup(path, filename)
     client = StartClient()
     MakePost(client, rand_image)
 
@@ -137,13 +139,16 @@ def RemoveImage():
 
 
 def MakePost(client, image):  # Main post function called by API method
-    with open('description.txt', 'r') as template:
-        post_desc = template.read()
+    with open('desc_header.txt', 'r') as template_1:
+        desc_header = template_1.read()
+    with open('search_results.txt', 'r') as template_2:
+        search_results = template_2.read()
+    with open('desc_footer.txt', 'r') as template_3:
+        desc_footer = template_3.read()
     meta = {'album': None,
             'name': None,
-            'title': 'How to repost: Day 2',
-            'description': post_desc}
-
+            'title': "So you like Sauce?",
+            'description': desc_header + '\n' + search_results + '\n' + desc_footer}
     print ("")
     print (("Attempting to upload file: " + image))
     client.upload_from_path(image, meta, anon=False)
@@ -151,10 +156,17 @@ def MakePost(client, image):  # Main post function called by API method
     print ("Success...")
 
 
+def TestLookup():
+    FillArray(folder)
+    rand_img = FindRandomImage()
+    ImageLookup(path, filename)
+
+
 #TestEmailPost()  # submit an image via E-mail. Works
 TestAPIPost()  # submit an image, with metadata, via API. Works
 RemoveImage()  # manage image library to prevent duplicate posts. Works
-EmailNotify(toaddrs)  # send notification to Main acct when bot submits an image. Works
+#EmailNotify(toaddrs)  # send notification to Main acct when bot submits an image. Works
+#TestLookup()  # perform a source search on a random image
 
 # Outline actions for making a general gallery submission
 # -------------------------------------------------------
