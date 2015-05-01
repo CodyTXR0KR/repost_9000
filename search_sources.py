@@ -47,7 +47,7 @@ def GoogleLookup(filename):
         print ("")
         print ("Search complete, saving results")
         with open('search_results.txt', 'w') as search_results:
-            search_results.write("Search by image URL: " + ShortenUrl(googlepath) + "\n")
+            search_results.write("Search by image URL: " + googlepath + "\n")
             search_results.write("Where I found it: http://imgur.com/gallery/" + galleryName + "\n" + "\n")
             search_results.write("Google Results:\n" + "------------------\n")
             if (len(findBestGuess) > 0):
@@ -55,7 +55,7 @@ def GoogleLookup(filename):
                 search_results.write("Google best guess: " + bestGuess + "\n" + "\n")
             search_results.write("Pages containing image:\n")
             for url in findLinks:
-                search_results.write(ShortenUrl(url) + "\n")
+                search_results.write(url + "\n")
             search_results.write("\n")
         search_results.close()
 
@@ -132,7 +132,7 @@ def UserLookup(filename):
                 search_results.write("Google best guess: " + bestGuess + "\n" + "\n")
             search_results.write("Pages containing image:\n")
             for url in findLinks:
-                search_results.write(ShortenUrl(url) + '\n')
+                search_results.write(url + '\n')
         search_results.close()
 
 
@@ -141,6 +141,7 @@ def ShortenUrl(url):
     config = get_config()
     config.read('auth.ini')  # this is the file that holds user credentials
     api_key = config.get('credentials', 'api_key')
+
     post_url = 'https://www.googleapis.com/urlshortener/v1/url?key=' + api_key
     postdata = {'longUrl': url}
     headers = {'Content-Type': 'application/json'}
