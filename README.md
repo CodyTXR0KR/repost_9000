@@ -26,4 +26,4 @@ planned features
 | community image contribution       |          |        |
 | scheduled daily posts              |          |        |
 | user feedback                      |          |        |
-| fully generate post metadata       |          |        |
+| fully generate post metadata       |    Yes   |  4/30  |
