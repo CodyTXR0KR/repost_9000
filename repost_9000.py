@@ -17,7 +17,7 @@ from email.mime.multipart import MIMEMultipart
 # Documentation >> https://api.imgur.com/
 from imgur_client import StartClient
 from helpers import get_config
-from search_sources import GoogleLookup, APILookup
+from search_sources import GoogleLookup, APILookup, LookupUrl, ShortenUrl
 
 # Get email username and password from auth.ini
 config = get_config()
@@ -105,7 +105,7 @@ def TestEmailPost():
 def TestAPIPost():
     FillArray(folder)
     rand_image = FindRandomImage()
-    GoogleLookup(path, filename)
+    GoogleLookup(filename)
     client = StartClient()
     APILookup(client, filename)
     MakePost(client, rand_image)
@@ -157,16 +157,17 @@ def MakePost(client, image):  # Main post function called by API method
     print ("Success...")
 
 
-
-
-
-
 def TestLookup():
     FillArray(folder)
     rand_img = FindRandomImage()
-    GoogleLookup(path, filename)
+    GoogleLookup(filename)
     client = StartClient()
     APILookup(client, filename)
+
+
+def TestNotificationRequest():
+    client = StartClient()
+    LookupUrl(client)
 
 
 #TestEmailPost()  # submit an image via E-mail. Works
@@ -174,6 +175,7 @@ TestAPIPost()  # submit an image, with metadata, via API. Works
 RemoveImage()  # manage image library to prevent duplicate posts. Works
 #EmailNotify(toaddrs)  # send notification to Main acct when bot submits an image. Works
 #TestLookup()  # perform a source search on a random image
+#TestNotificationRequest()  # performs google search on user request. Works
 
 
 # Outline actions for making a general gallery submission
