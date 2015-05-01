@@ -17,7 +17,7 @@ from email.mime.multipart import MIMEMultipart
 # Documentation >> https://api.imgur.com/
 from imgur_client import StartClient
 from helpers import get_config
-from search_sources import ImageLookup
+from search_sources import GoogleLookup, APILookup
 
 # Get email username and password from auth.ini
 config = get_config()
@@ -83,7 +83,7 @@ def FillArray(Folder):
 
 def GetRandom():
     global files
-    return randint(0, len(files))
+    return (randint(1, len(files)) - 1)
 
 
 def FindRandomImage():
@@ -105,8 +105,9 @@ def TestEmailPost():
 def TestAPIPost():
     FillArray(folder)
     rand_image = FindRandomImage()
-    ImageLookup(path, filename)
+    GoogleLookup(path, filename)
     client = StartClient()
+    APILookup(client, filename)
     MakePost(client, rand_image)
 
 
@@ -147,7 +148,7 @@ def MakePost(client, image):  # Main post function called by API method
         desc_footer = template_3.read()
     meta = {'album': None,
             'name': None,
-            'title': "So you like Sauce?",
+            'title': "'Well my days of not taking you seriously are certainly coming to a middle.'",
             'description': desc_header + '\n' + search_results + '\n' + desc_footer}
     print ("")
     print (("Attempting to upload file: " + image))
@@ -156,10 +157,16 @@ def MakePost(client, image):  # Main post function called by API method
     print ("Success...")
 
 
+
+
+
+
 def TestLookup():
     FillArray(folder)
     rand_img = FindRandomImage()
-    ImageLookup(path, filename)
+    GoogleLookup(path, filename)
+    client = StartClient()
+    APILookup(client, filename)
 
 
 #TestEmailPost()  # submit an image via E-mail. Works
@@ -167,6 +174,7 @@ TestAPIPost()  # submit an image, with metadata, via API. Works
 RemoveImage()  # manage image library to prevent duplicate posts. Works
 #EmailNotify(toaddrs)  # send notification to Main acct when bot submits an image. Works
 #TestLookup()  # perform a source search on a random image
+
 
 # Outline actions for making a general gallery submission
 # -------------------------------------------------------

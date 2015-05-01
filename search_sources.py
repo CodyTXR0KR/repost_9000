@@ -16,38 +16,66 @@ opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cj))
 opener.addheaders = [('User-agent', 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17')]
 
 
-def ImageLookup(path, filename):
-    # Google's search by image does not support webm
-    # need a check to ensure good results
-    print ("")
-    print ("Attempting reverse image search on " + path)
-    # Also check to see if image was removed
-    # path to file on imgur server
-    remotepath = 'http://i.imgur.com/' + filename
-    # url to perform reverse image search
-    googlepath = 'http://www.google.com/searchbyimage?image_url=' + remotepath
-    # Visit the url provided
-    sourceCode = opener.open(googlepath).read()
+def GoogleLookup(path, filename):
+    # Clear old search results
+    #os.remove('search_results.txt')
     # Remove file extension for URL building (later)
     galleryName = os.path.splitext(filename)[0]
-    # Parse output of search (.*? handles any output after regex)
-    # Links to pages containing the image
-    findLinks = re.findall(r'<div class="rc" data-hveid=".*?">.*?imgurl=(.*?)&amp;', sourceCode)
-    # Googles best guess for related keywords (title generation?)
-    findBestGuess = re.findall(r'<div class="_hUb">.*?q=(.*?)&amp;', sourceCode)
-    # Write results to file for use in description
-    print ("")
-    print ("Search complete, saving results")
-    with open('search_results.txt', 'w') as search_results:
-        search_results.write("Search by image URL: " + googlepath + "\n")
-        search_results.write("\n")
-        if (len(findBestGuess) > 0):
-            bestGuess = string.replace(findBestGuess[0], '+', ' ')
-            search_results.write("Google best guess: " + bestGuess + "\n")
-        search_results.write("Imgur gallery url: http://imgur.com/gallery/" + galleryName + "\n")
-        search_results.write("\n")
-        search_results.write("Pages containing image:\n")
-        for url in findLinks:
-            search_results.write(url + "\n")
-        search_results.write("\n")
 
+    if (filename.endswith('webm')):
+        with open('search_results.txt', 'w') as search_results:
+            search_results.write("Google Reverse image lookup does not support this file format \n" + "\n")
+            search_results.write("Where I found it: http://imgur.com/gallery/" + galleryName + "\n")
+    else:
+        print ("")
+        print (("Attempting reverse image search on " + path))
+        # Also check to see if image was removed
+        # path to file on imgur server
+        remotepath = 'http://i.imgur.com/' + filename
+        # url to perform reverse image search
+        googlepath = 'http://www.google.com/searchbyimage?image_url=' + remotepath
+        # Visit the url provided
+        sourceCode = opener.open(googlepath).read()
+        # Parse output of search (.*? handles any output after regex)
+        # Links to pages containing the image
+        findLinks = re.findall(r'<div class="rc" data-hveid=".*?">.*?imgurl=(.*?)&amp;', sourceCode)
+        # Googles best guess for related keywords (title generation?)
+        findBestGuess = re.findall(r'<div class="_hUb">.*?q=(.*?)&amp;', sourceCode)
+        # Write results to file for use in description
+        print ("")
+        print ("Search complete, saving results")
+        with open('search_results.txt', 'w') as search_results:
+            search_results.write("Search by image URL: " + googlepath + "\n")
+            search_results.write("Where I found it: http://imgur.com/gallery/" + galleryName + "\n" + "\n")
+            search_results.write("Google Results:\n" + "------------------\n")
+            if (len(findBestGuess) > 0):
+                bestGuess = string.replace(findBestGuess[0], '+', ' ')
+                search_results.write("Google best guess: " + bestGuess + "\n" + "\n")
+            search_results.write("Pages containing image:\n")
+            for url in findLinks:
+                search_results.write(url + "\n")
+            search_results.write("\n")
+        search_results.close()
+
+
+def APILookup(client, filename):
+    imageID = os.path.splitext(filename)[0]
+
+    print ("Looking for info from Imgur...")
+    print (imageID)
+    gallery_obj = client.gallery_item(imageID)
+
+    with open('search_results.txt', 'a') as search_results:
+        search_results.write("Imgur search:\n" + "------------------\n")
+        if (gallery_obj.title is not None):
+            search_results.write("title: " + gallery_obj.title + "\n")
+        search_results.write("owner: " + gallery_obj.account_url + "\n" + "\n")
+        #search_results.write("date: " + str(gallery_obj.datetime) + "(epoch time)\n")
+        if (gallery_obj.description is not None):
+            search_results.write("description: " + gallery_obj.description + "\n")
+        search_results.write("views: " + str(gallery_obj.views) + "\n")
+        search_results.write("upvotes: " + str(gallery_obj.ups) + "\n")
+        search_results.write("downvotes: " + str(gallery_obj.downs) + "\n")
+        search_results.write("score: " + str(gallery_obj.score) + "\n")
+    search_results.close()
+    print ("done.")
