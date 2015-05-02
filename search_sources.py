@@ -6,7 +6,7 @@ import requests
 import urllib2
 import json
 import re
-#import time
+import time
 
 from urllib2 import urlopen
 from cookielib import CookieJar
@@ -71,8 +71,10 @@ def APILookup(client, filename):
         search_results.write("Imgur search:\n" + "------------------\n")
         if (gallery_obj.title is not None):
             search_results.write("title: " + gallery_obj.title + "\n")
-        search_results.write("owner: " + gallery_obj.account_url + "\n" + "\n")
-        #search_results.write("date: " + str(gallery_obj.datetime) + "(epoch time)\n") # Need to convert
+        search_results.write("owner: " + gallery_obj.account_url + "\n")
+        # Convert epochtime from imgur to human readable
+        post_date = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(gallery_obj.datetime))
+        search_results.write("date: " + post_date + "\n" + "\n")
         if (gallery_obj.description is not None):
             search_results.write("description: " + gallery_obj.description + "\n")
         search_results.write("views: " + str(gallery_obj.views) + "\n")

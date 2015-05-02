@@ -139,6 +139,19 @@ def RemoveImage():
     #os.remove(path)  # Option to delete the file from candidate directory
 
 
+# Outline actions for making a general gallery submission
+# -------------------------------------------------------
+# Update image library (Remove used, duplicate, NSFW, and/or blacklisted images)
+# Add all potential paths to an array
+# Select a random index within the array
+# Run search to find original image source(if possible)(to be used in Description)
+# (optional) Find original top comment from source (to be used as new Title)
+# Initialize/authenticate Imgur client
+# Assemble image and metadata package and submit to gallery
+# Email notification action_log to developer
+# Handle management of image library
+
+
 def MakePost(client, image):  # Main post function called by API method
     with open('desc_header.txt', 'r') as template_1:
         desc_header = template_1.read()
@@ -171,21 +184,8 @@ def TestNotificationRequest():
 
 
 #TestEmailPost()  # submit an image via E-mail. Works
-TestAPIPost()  # submit an image, with metadata, via API. Works
-RemoveImage()  # manage image library to prevent duplicate posts. Works
+#TestAPIPost()  # submit an image, with metadata, via API. Works
+#RemoveImage()  # manage image library to prevent duplicate posts. Works
 #EmailNotify(toaddrs)  # send notification to Main acct when bot submits an image. Works
-#TestLookup()  # perform a source search on a random image
+TestLookup()  # perform a source search on a random image
 #TestNotificationRequest()  # performs google search on user request. Works
-
-
-# Outline actions for making a general gallery submission
-# -------------------------------------------------------
-# Update image library (Remove used, duplicate, NSFW, and/or blacklisted images)
-# Add all potential paths to an array
-# Select a random index within the array
-# Run search to find original image source(if possible)(to be used in Description)
-# (optional) Find original top comment from source (to be used as new Title)
-# Initialize/authenticate Imgur client
-# Assemble image and metadata package and submit to gallery
-# Email notification action_log to developer
-# Handle management of image library
