@@ -20,9 +20,12 @@ planned features
 | post image to imgur via Email      |    Yes   |  4/27  |
 | post image to imgur via API        |    Yes   |  4/27  |
 | modify post metadata and publish   |    Yes   |  4/27  |
+| reverse image search               |    Yes   |  4/29  |
 | credit / link original source      |    Yes   |  4/29  |
 | remove used images from directory  |    Yes   |  4/28  |
 | community image contribution       |          |        |
 | scheduled daily posts              |          |        |
 | user feedback                      |          |        |
 | fully generate post metadata       |    Yes   |  4/30  |
+| shorten generated urls             |    Yes   |  5/01  |
+| access notifications               |    Yes   |  5/01  |
