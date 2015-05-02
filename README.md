@@ -1,5 +1,5 @@
 # repost_9000
-* `Learning experiment project focused on various webApp API's including google(gmail), and imgurpython`
+* `Learning experiment project focused on various webApp API's including google(gmail, goo gl), and imgurpython`
 
 developer
 ---------
