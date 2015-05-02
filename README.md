@@ -1,9 +1,8 @@
 # repost_9000
 * `Learning experiment project focused on various webApp API's including google(gmail), and imgurpython`
 
-
 developer
-=========
+---------
 - Cody Rocker - contact: cody.rocker.83@gmail.com
 - http://imgur.com/user/repost9000
 
@@ -14,7 +13,7 @@ Requirements
 - [imgurpython](https://github.com/Imgur/imgurpython)
 
 planned features
-================
+----------------
 | description                        | complete |  date  |
 |------------------------------------|----------|--------|
 | return random from folder          |    Yes   |  4/27  |
